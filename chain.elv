@@ -238,6 +238,11 @@ fn -build-chain [segments]{
   output = ""
   -parse-git
   for seg $segments {
+    if (eq $seg "\n") {
+      put $seg
+      first = $true
+      continue
+    }
     output = [(-interpret-segment $seg)]
     if (> (count $output) 0) {
       if (not $first) {
